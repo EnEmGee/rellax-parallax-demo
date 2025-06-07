@@ -57,21 +57,35 @@
       color: #333;
     }
 
-    .fade-in {
+    .merge-text-section {
+      background: #DFD1A7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1em;
+      padding: 2em;
+    }
+
+    .merge-text {
+      flex: 1 1 40%;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease-out, transform 1s ease-out;
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 1.25rem;
+      transform: translateX(-50px);
+      transition: opacity 1.5s ease, transform 1.5s ease;
+      font-size: 1.1rem;
+      text-align: left;
+      max-width: 400px;
     }
 
-    .fade-in.show {
+    .merge-text.right {
+      transform: translateX(50px);
+    }
+
+    .merge-text.show {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(0);
     }
 
-    /* Image movement animation */
     .image-left, .image-right {
       position: relative;
       width: 50%;
@@ -106,40 +120,37 @@
   <!-- Parallax Section with Background Image and Floating Text -->
   <div class="section bg">
     <h1 class="floating-title">Welcome to ACU Short Courses</h1>
-    <div class="parallax-text" data-rellax-speed="-3"><!-- Replace this with your parallax title or message --></div>
+    <div class="parallax-text" data-rellax-speed="-3"></div>
   </div>
 
-  <!-- Dynamic Text Block Appears on Scroll -->
-  <div class="section flat fade-in" id="acuMessage">
-    <p>
-      When you undertake an ACU Short Course, you are getting the latest research from a trusted Australian university, along with industry expertise and cutting edge design. ACU Short Courses are designed to be accessed anywhere, anytime and on any device. You get to choose your own learning path.
-    </p>
+  <!-- Merging Text Block Appears on Scroll -->
+  <div class="section merge-text-section">
+    <div class="merge-text left" id="textLeft">
+      When you undertake an ACU Short Course, you are getting the latest research from a trusted Australian university, along with industry expertise and cutting edge design.
+    </div>
+    <div class="merge-text right" id="textRight">
+      ACU Short Courses are designed to be accessed anywhere, anytime and on any device. You get to choose your own learning path.
+    </div>
   </div>
 
   <!-- Another Parallax Section -->
   <div class="section bg">
-    <div class="parallax-text" data-rellax-speed="2"><!-- Another parallax element --></div>
+    <div class="parallax-text" data-rellax-speed="2"></div>
   </div>
 
   <!-- Additional Static Section -->
   <div class="section flat">
-    <div>
-      <!-- Insert more detailed content here -->
-      This is another regular section for text, media, or interaction.
-    </div>
+    <div>This is another regular section for text, media, or interaction.</div>
   </div>
 
   <!-- Animated Image Section -->
   <div class="section flat">
-    <!-- Replace with your own images -->
-    <!-- Images will slide in from left and right when they enter the viewport -->
     <img src="https://picsum.photos/id/1025/300/200" alt="Left Image" class="image-left" id="imgLeft">
     <img src="https://picsum.photos/id/1035/300/200" alt="Right Image" class="image-right" id="imgRight">
   </div>
 
   <!-- Embedded YouTube Video Section -->
   <div class="section flat">
-    <!-- Embedded YouTube video: https://www.youtube.com/watch?v=u31qwQUeGuM -->
     <iframe id="autoplayVideo" src="https://www.youtube.com/embed/u31qwQUeGuM?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   </div>
 
@@ -159,11 +170,10 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.image-left, .image-right, .fade-in').forEach(el => {
+    document.querySelectorAll('.image-left, .image-right, .merge-text').forEach(el => {
       observer.observe(el);
     });
 
-    // Autoplay and unmute YouTube video when in viewport
     const videoObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
