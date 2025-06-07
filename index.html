@@ -21,6 +21,7 @@
       position: relative;
       text-align: center;
       padding: 2em;
+      flex-wrap: wrap;
     }
 
     .bg {
@@ -48,7 +49,7 @@
     /* Image movement animation */
     .image-left, .image-right {
       position: relative;
-      width: 300px;
+      width: 50%;
       transition: transform 1s ease, opacity 1s ease;
       opacity: 0;
     }
@@ -67,8 +68,11 @@
     }
 
     iframe {
+      width: 100vw;
+      height: 56.25vw;
       max-width: 100%;
       border: none;
+      display: block;
     }
   </style>
 </head>
@@ -111,7 +115,7 @@
   <!-- Embedded YouTube Video Section -->
   <div class="section flat">
     <!-- Embedded YouTube video: https://www.youtube.com/watch?v=u31qwQUeGuM -->
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/u31qwQUeGuM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe id="autoplayVideo" src="https://www.youtube.com/embed/u31qwQUeGuM?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   </div>
 
   <!-- Rellax.js Library -->
@@ -120,7 +124,7 @@
     var rellax = new Rellax('.parallax-text');
   </script>
 
-  <!-- Intersection Observer for Image Animations -->
+  <!-- Intersection Observer for Image Animations and Video Autoplay -->
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -133,8 +137,21 @@
     document.querySelectorAll('.image-left, .image-right').forEach(el => {
       observer.observe(el);
     });
+
+    // Autoplay and unmute YouTube video when in viewport
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const iframe = entry.target;
+          iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+          iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const video = document.getElementById('autoplayVideo');
+    videoObserver.observe(video);
   </script>
 
 </body>
 </html>
-
