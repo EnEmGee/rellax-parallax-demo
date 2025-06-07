@@ -13,7 +13,7 @@
     }
 
     .section {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -67,7 +67,7 @@
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      gap: 1em;
+      gap: 2em;
       padding: 2em;
     }
 
@@ -88,6 +88,12 @@
     .merge-text.show {
       opacity: 1;
       transform: translateX(0);
+    }
+
+    .merge-text img {
+      width: 100%;
+      height: auto;
+      margin-top: 1em;
     }
 
     .image-left, .image-right {
@@ -131,9 +137,11 @@
   <div class="section merge-text-section">
     <div class="merge-text left" id="textLeft">
       When you undertake an ACU Short Course, you are getting the latest research from a trusted Australian university, along with industry expertise and cutting edge design.
+      <img src="https://picsum.photos/id/1020/400/250" alt="Left supporting image">
     </div>
     <div class="merge-text right" id="textRight">
       ACU Short Courses are designed to be accessed anywhere, anytime and on any device. You get to choose your own learning path.
+      <img src="https://picsum.photos/id/1030/400/250" alt="Right supporting image">
     </div>
   </div>
 
@@ -170,6 +178,8 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
+        } else {
+          entry.target.classList.remove('show');
         }
       });
     }, { threshold: 0.1 });
