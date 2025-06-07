@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rellax Parallax Template</title>
   <style>
     body, html {
@@ -19,6 +19,7 @@
       justify-content: center;
       font-size: 3em;
       position: relative;
+      text-align: center;
       padding: 2em;
       flex-wrap: wrap;
     }
@@ -28,9 +29,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      position: relative;
       color: white;
-      text-align: center;
     }
 
     .parallax-text {
@@ -43,25 +42,17 @@
 
     .floating-title {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) translateY(30px);
-      font-size: 2.5em;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1em;
+      font-size: 2em;
       font-weight: bold;
       color: white;
       text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
-      background: rgba(0, 0, 0, 0.4);
-      padding: 1em 2em;
-      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.3);
       z-index: 2;
       text-align: center;
-      opacity: 0;
-      transition: all 1s ease;
-    }
-
-    .floating-title.show {
-      transform: translate(-50%, -50%) translateY(0);
-      opacity: 1;
     }
 
     .flat {
@@ -72,40 +63,65 @@
     .merge-text-section {
       background: #DFD1A7;
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
       flex-wrap: wrap;
+      justify-content: space-around;
       gap: 2em;
       padding: 2em;
     }
 
     .merge-text {
-      flex: 1 1 40%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5em;
+      flex: 1 1 400px;
+    }
+
+    .icon {
       opacity: 0;
-      transform: translateX(-50px);
-      transition: opacity 1.5s ease, transform 1.5s ease;
-      font-size: 1.1rem;
-      text-align: left;
-      max-width: 400px;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+      max-width: 100px;
+      text-align: center;
     }
 
-    .merge-text.right {
-      transform: translateX(50px);
-    }
-
-    .merge-text.show {
+    .icon.show {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
 
-    .merge-text img {
-      width: 48px;
-      height: 48px;
-      margin: 0.25em;
+    .icon img {
+      max-width: 80px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .icon figcaption {
+      font-size: 0.5em;
+      color: #333;
+      margin-top: 0.5em;
+    }
+
+    @media screen and (max-width: 600px) {
+      .icon img {
+        max-width: 60px;
+      }
+      .merge-text {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    iframe {
+      width: 100vw;
+      height: 56.25vw;
+      max-width: 100%;
+      border: none;
+      display: block;
     }
 
     .image-left, .image-right {
-      position: relative;
       width: 50%;
       transition: transform 1s ease, opacity 1s ease;
       opacity: 0;
@@ -123,40 +139,97 @@
       transform: translateX(0);
       opacity: 1;
     }
-
-    iframe {
-      width: 100vw;
-      height: 56.25vw;
-      max-width: 100%;
-      border: none;
-      display: block;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Parallax Section with Background Image and Floating Text -->
-  <div class="section bg">
-    <h1 class="floating-title" id="titleFloat">Welcome to ACU Short Courses</h1>
-    <div class="parallax-text" data-rellax-speed="-3"></div>
+<!-- Parallax Section -->
+<div class="section bg">
+  <h1 class="floating-title">Welcome to ACU Short Courses</h1>
+  <div class="parallax-text" data-rellax-speed="-3"></div>
+</div>
+
+<!-- Icon Grid Section -->
+<div class="section merge-text-section">
+  <!-- Right Block -->
+  <div class="merge-text">
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-assess-notes.svg"><figcaption>Assessment Notes</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-cultural.svg"><figcaption>Cultural</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-expert.svg"><figcaption>Expert</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-explore.svg"><figcaption>Explore</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-info.svg"><figcaption>Info</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-tip.svg"><figcaption>Tip</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-understand.svg"><figcaption>Understand</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-activity.svg"><figcaption>Activity</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-assess.svg"><figcaption>Assess</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-calendar.svg"><figcaption>Calendar</figcaption></figure>
   </div>
 
-  <!-- Merging Text Block Appears on Scroll -->
-  <!-- (content unchanged) -->
+  <!-- Left Block -->
+  <div class="merge-text">
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-important.svg"><figcaption>Important</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-listen.svg"><figcaption>Listen</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-read.svg"><figcaption>Read</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-reflect.svg"><figcaption>Reflect</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-takenote.svg"><figcaption>Take Note</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-tools.svg"><figcaption>Tools</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-watch.svg"><figcaption>Watch</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/unitcontent/SharedAssets/ShortCourseIcons/icon-casestudy.svg"><figcaption>Case Study</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/ShortCourses/Icons/icon-prepare.svg"><figcaption>Prepare</figcaption></figure>
+    <figure class="icon"><img src="https://cei-dlc.acucontenthub.acu.edu.au/ShortCourses/Icons/icon-share.svg"><figcaption>Share</figcaption></figure>
+  </div>
+</div>
 
-  <script>
-    const titleObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const title = document.getElementById('titleFloat');
-        if (entry.isIntersecting) {
-          title.classList.add('show');
-        } else {
-          title.classList.remove('show');
-        }
-      });
-    }, { threshold: 0.5 });
+<!-- Parallax Section -->
+<div class="section bg">
+  <div class="parallax-text" data-rellax-speed="2"></div>
+</div>
 
-    titleObserver.observe(document.querySelector('.section.bg'));
-  </script>
+<!-- Static Content Section -->
+<div class="section flat">
+  <div>This is another regular section for text, media, or interaction.</div>
+</div>
+
+<!-- Image Animation -->
+<div class="section flat">
+  <img src="https://picsum.photos/id/1025/300/200" alt="Left Image" class="image-left" id="imgLeft">
+  <img src="https://picsum.photos/id/1035/300/200" alt="Right Image" class="image-right" id="imgRight">
+</div>
+
+<!-- Video Section -->
+<div class="section flat">
+  <iframe id="autoplayVideo" src="https://www.youtube.com/embed/u31qwQUeGuM?enablejsapi=1" title="YouTube video player" allowfullscreen></iframe>
+</div>
+
+<!-- JS Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/rellax@1.12.1/rellax.min.js"></script>
+<script>
+  new Rellax('.parallax-text');
+
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.icon, .image-left, .image-right').forEach(el => {
+    fadeObserver.observe(el);
+  });
+
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const iframe = entry.target;
+        iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+        iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+      }
+    });
+  }, { threshold: 0.5 });
+
+  videoObserver.observe(document.getElementById('autoplayVideo'));
+</script>
+
 </body>
 </html>
