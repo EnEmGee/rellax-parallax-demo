@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rellax Parallax Template</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      overflow-x: hidden;
+    }
+
+    .section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3em;
+      position: relative;
+      text-align: center;
+      padding: 2em;
+    }
+
+    .bg {
+      background-image: url('https://picsum.photos/id/1015/1920/1080');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      color: white;
+    }
+
+    .parallax-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+
+    .flat {
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    /* Image movement animation */
+    .image-left, .image-right {
+      position: relative;
+      width: 300px;
+      transition: transform 1s ease, opacity 1s ease;
+      opacity: 0;
+    }
+
+    .image-left {
+      transform: translateX(-100px);
+    }
+
+    .image-right {
+      transform: translateX(100px);
+    }
+
+    .show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    iframe {
+      max-width: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Parallax Section with Background Image and Floating Text -->
+  <div class="section bg">
+    <div class="parallax-text" data-rellax-speed="-3"><!-- Replace this with your parallax title or message --></div>
+  </div>
+
+  <!-- Static Content Section -->
+  <div class="section flat">
+    <div>
+      <!-- Replace with text, image, or embedded video -->
+      This is a normal scrolling content section.
+    </div>
+  </div>
+
+  <!-- Another Parallax Section -->
+  <div class="section bg">
+    <div class="parallax-text" data-rellax-speed="2"><!-- Another parallax element --></div>
+  </div>
+
+  <!-- Additional Static Section -->
+  <div class="section flat">
+    <div>
+      <!-- Insert more detailed content here -->
+      This is another regular section for text, media, or interaction.
+    </div>
+  </div>
+
+  <!-- Animated Image Section -->
+  <div class="section flat">
+    <!-- Replace with your own images -->
+    <!-- Images will slide in from left and right when they enter the viewport -->
+    <img src="https://picsum.photos/id/1025/300/200" alt="Left Image" class="image-left" id="imgLeft">
+    <img src="https://picsum.photos/id/1035/300/200" alt="Right Image" class="image-right" id="imgRight">
+  </div>
+
+  <!-- Embedded YouTube Video Section -->
+  <div class="section flat">
+    <!-- Embedded YouTube video: https://www.youtube.com/watch?v=u31qwQUeGuM -->
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/u31qwQUeGuM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+
+  <!-- Rellax.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/rellax@1.12.1/rellax.min.js"></script>
+  <script>
+    var rellax = new Rellax('.parallax-text');
+  </script>
+
+  <!-- Intersection Observer for Image Animations -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.image-left, .image-right').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
